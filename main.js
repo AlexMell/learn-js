@@ -2117,6 +2117,177 @@ function less66() {
 }
 
 function less67() {
-    console.log('1');
+
+    function showMenu(title = "No-title", width = 100, height = 200) {
+        console.log(title + " " + width + " " + height);
+    }
+
+    showMenu();
+
+    console.log(showMenu.name);
+
+    let g = function () {
+        self = this;
+        console.log(self);
+    }
+
+    g();
+    console.log(g.name);
+
+    let numbers = [1,2,3,4,5];
+
+    console.log(...numbers);
+
+    function numbersss(...numbers) {
+        let num;
+        console.log(num);
+    }
+    numbersss();
+
+    function f(x) {
+        return x + 1;
+    }
+    f(1);
+
+    let sum = (a, b) => a + b;
+
+    console.log(sum(2, 2));
+    console.log(sum(25, 2));
+    console.log(sum(35, 32));
+
 }
-less67();
+
+
+// #Promise
+
+function less68() {
+
+    // Эта функция будет вызвана автоматически
+
+    // В ней можно делать любые асинхронные операции,
+    // А когда они завершатся — нужно вызвать одно из:
+    // resolve(результат) при успешном выполнении
+    // reject(ошибка) при ошибке
+
+//    var promise = new Promise(function (resolve, reject) {
+
+//        setTimeout(() => resolve(console.log('hi')), 2000)
+
+//    })
+
+//    function httpGet(url) {
+//
+//        return new Promise(function(resolve, reject) {
+//
+//            var xhr = new XMLHttpRequest();
+//            xhr.open('GET', url, true);
+//
+//            xhr.onload = function() {
+//                if (this.status == 200) {
+//                    resolve(this.response);
+//                } else {
+//                    var error = new Error(this.statusText);
+//                    error.code = this.status;
+//                    reject(error);
+//                }
+//            };
+//
+//            xhr.onerror = function() {
+//                reject(new Error("Network Error"));
+//            };
+//
+//            xhr.send();
+//        });
+//
+//    }
+//
+//    // сделать запрос
+//    httpGet('/article/promise/user.json')
+//    // 1. Получить данные о пользователе в JSON и передать дальше
+//        .then(response => {
+//            console.log(response);
+//            let user = JSON.parse(response);
+//            return user;
+//        })
+//        // 2. Получить информацию с github
+//        .then(user => {
+//            console.log(user);
+//            return httpGet(`https://api.github.com/users/${user.name}`);
+//        })
+//        // 3. Вывести аватар на 3 секунды (можно с анимацией)
+//        .then(githubUser => {
+//            console.log(githubUser);
+//            githubUser = JSON.parse(githubUser);
+//
+//            let img = new Image();
+//            img.src = githubUser.avatar_url;
+//            img.className = "promise-avatar-example";
+//            document.body.appendChild(img);
+//
+//            setTimeout(() => img.remove(), 3000); // (*)
+//        });
+
+    function delay(ms) {
+
+        return new Promise((resolve, reject) => {
+
+            setTimeout(() => {
+                resolve();
+            }, ms)
+
+        })
+    }
+//    delay(1000).then(() => alert('Hi'));
+
+
+    let urls = [
+        'user.json',
+        'guest.json'
+    ];
+
+    function each(url) {
+
+        return new Promise((resolve, reject) => {
+
+            let list = url;
+            console.log(Promise.resolve(list));
+//            console.log(Promise.resolve());
+
+
+        });
+
+    }
+    each(urls)
+        .then(() => {
+            for (var i = 0; i < urls.length; i++) {
+                let onelink = urls[i];
+            }
+        })
+        .then(() => {
+            var results = []
+            console.log(results);
+        })
+
+    const arr = [1, 2, 3, 4];
+
+    arr.reduce((promise, value) => {
+        return promise.then(() => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(console.log(value));
+                }, Math.random() * 2000);
+            });
+        });
+    }, Promise.resolve());
+
+//    Напишите код, который все URL из этого массива загружает один за другим (последовательно) и сохраняет результаты в массиве results, а потом выводит.
+//
+//        Вариант с параллельной загрузкой выглядел бы так:
+//    Promise.all( urls.map(httpGet) )
+//           .then(alert);
+//    В этой задаче загрузку нужно реализовать последовательно.
+
+
+
+}
+less68();
